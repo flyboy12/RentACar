@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="RentACar" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="RentACarContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MusterilerSet" EntityType="RentACar.Musteriler" />
+    <EntitySet Name="OdemelerSet" EntityType="RentACar.Odemeler" />
+    <EntitySet Name="ArabalarSet" EntityType="RentACar.Arabalar" />
+    <EntitySet Name="BayilerSet" EntityType="RentACar.Bayiler" />
+    <AssociationSet Name="MusteriId" Association="RentACar.MusteriId">
+      <End Role="Musteriler" EntitySet="MusterilerSet" />
+      <End Role="Odemeler" EntitySet="OdemelerSet" />
+    </AssociationSet>
+    <AssociationSet Name="ArabaId" Association="RentACar.ArabaId">
+      <End Role="Arabalar" EntitySet="ArabalarSet" />
+      <End Role="Odemeler" EntitySet="OdemelerSet" />
+    </AssociationSet>
+    <AssociationSet Name="BayilerArabalar" Association="RentACar.BayilerArabalar">
+      <End Role="Bayiler" EntitySet="BayilerSet" />
+      <End Role="Arabalar" EntitySet="ArabalarSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Musteriler">
+    <Key>
+      <PropertyRef Name="MusteriId" />
+    </Key>
+    <Property Name="MusteriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" Nullable="false" />
+    <Property Name="Telefon" Type="String" Nullable="false" />
+    <Property Name="TCKimlikNo" Type="String" Nullable="false" />
+    <Property Name="EhliyetDurumu" Type="String" Nullable="false" />
+    <Property Name="MusteriAdres" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Odemeler">
+    <Key>
+      <PropertyRef Name="OdemeId" />
+    </Key>
+    <Property Name="OdemeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OdemeTutar" Type="Decimal" Nullable="false" />
+    <Property Name="OdemeTarih" Type="DateTime" Nullable="false" />
+    <Property Name="VadeFarki" Type="Double" Nullable="false" />
+    <Property Name="MusteriId" Type="Int32" Nullable="false" />
+    <Property Name="ArabaId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Arabalar">
+    <Key>
+      <PropertyRef Name="ArabaId" />
+    </Key>
+    <Property Name="ArabaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Marka" Type="String" Nullable="false" />
+    <Property Name="Model" Type="String" Nullable="false" />
+    <Property Name="Ozellik" Type="String" Nullable="false" />
+    <Property Name="KM" Type="Int32" Nullable="false" />
+    <Property Name="HGS" Type="String" Nullable="false" />
+    <Property Name="GunlukTutar" Type="Decimal" Nullable="false" />
+    <Property Name="BayiId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bayiler">
+    <Key>
+      <PropertyRef Name="BayiId" />
+    </Key>
+    <Property Name="BayiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" />
+    <Property Name="Yetkilisi" Type="String" Nullable="false" />
+    <Property Name="BayiAdres" Type="String" Nullable="false" />
+    <Property Name="BayiTelefon" Type="String" Nullable="false" />
+    <Property Name="BayiCiro" Type="Decimal" Nullable="false" />
+  </EntityType>
+  <Association Name="MusteriId">
+    <End Type="RentACar.Musteriler" Role="Musteriler" Multiplicity="1" />
+    <End Type="RentACar.Odemeler" Role="Odemeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteriler">
+        <PropertyRef Name="MusteriId" />
+      </Principal>
+      <Dependent Role="Odemeler">
+        <PropertyRef Name="MusteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ArabaId">
+    <End Type="RentACar.Arabalar" Role="Arabalar" Multiplicity="1" />
+    <End Type="RentACar.Odemeler" Role="Odemeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Arabalar">
+        <PropertyRef Name="ArabaId" />
+      </Principal>
+      <Dependent Role="Odemeler">
+        <PropertyRef Name="ArabaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BayilerArabalar">
+    <End Type="RentACar.Bayiler" Role="Bayiler" Multiplicity="1" />
+    <End Type="RentACar.Arabalar" Role="Arabalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bayiler">
+        <PropertyRef Name="BayiId" />
+      </Principal>
+      <Dependent Role="Arabalar">
+        <PropertyRef Name="BayiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

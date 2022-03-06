@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RentACarStoreContainer" CdmEntityContainer="RentACarContainer">
+    <EntitySetMapping Name="MusterilerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(RentACar.Musteriler)">
+        <MappingFragment StoreEntitySet="MusterilerSet">
+          <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="TCKimlikNo" ColumnName="TCKimlikNo" />
+          <ScalarProperty Name="EhliyetDurumu" ColumnName="EhliyetDurumu" />
+          <ScalarProperty Name="MusteriAdres" ColumnName="MusteriAdres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OdemelerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(RentACar.Odemeler)">
+        <MappingFragment StoreEntitySet="OdemelerSet">
+          <ScalarProperty Name="OdemeId" ColumnName="OdemeId" />
+          <ScalarProperty Name="OdemeTutar" ColumnName="OdemeTutar" />
+          <ScalarProperty Name="OdemeTarih" ColumnName="OdemeTarih" />
+          <ScalarProperty Name="VadeFarki" ColumnName="VadeFarki" />
+          <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+          <ScalarProperty Name="ArabaId" ColumnName="ArabaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArabalarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(RentACar.Arabalar)">
+        <MappingFragment StoreEntitySet="ArabalarSet">
+          <ScalarProperty Name="ArabaId" ColumnName="ArabaId" />
+          <ScalarProperty Name="Marka" ColumnName="Marka" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Ozellik" ColumnName="Ozellik" />
+          <ScalarProperty Name="KM" ColumnName="KM" />
+          <ScalarProperty Name="HGS" ColumnName="HGS" />
+          <ScalarProperty Name="GunlukTutar" ColumnName="GunlukTutar" />
+          <ScalarProperty Name="BayiId" ColumnName="BayiId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BayilerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(RentACar.Bayiler)">
+        <MappingFragment StoreEntitySet="BayilerSet">
+          <ScalarProperty Name="BayiId" ColumnName="BayiId" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Yetkilisi" ColumnName="Yetkilisi" />
+          <ScalarProperty Name="BayiAdres" ColumnName="BayiAdres" />
+          <ScalarProperty Name="BayiTelefon" ColumnName="BayiTelefon" />
+          <ScalarProperty Name="BayiCiro" ColumnName="BayiCiro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
